@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Keyboard List</h1>
+
+{% for keyboard in keyboards %}
+<div class="card">
+  <a href="{% url 'detail' keyboard.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ keyboard.name}}</span>
+      <p>Keyboard: {{ keyboard.keyboard }}</p>
+      <p>Switches: {{ keyboard.switch }}</p>
+      <p>Keycaps: {{ keyboard.keycaps }}</p>
+      {% for photo in keyboard.photo_set.all %}
+        <img class="responsive-img card-panel" src="{{photo.url}}">
+      {% empty %}
+        <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+      {% endfor %}
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
